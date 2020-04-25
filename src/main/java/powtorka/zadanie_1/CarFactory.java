@@ -1,4 +1,4 @@
-package zadanie_1;
+package powtorka.zadanie_1;
 
 import java.util.ArrayList;
 import java.util.List;
