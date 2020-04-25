@@ -1,52 +1,52 @@
 package shop;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Warehouse implements IWarehouse {
-    Map<String, Integer> productList;
+    Map<String, ProductQuantity> productMap;
 
-    public Map<String, Integer> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(Map<String, Integer> productList) {
-        this.productList = productList;
+    public Map<String, ProductQuantity> getProductMap() {
+        return productMap;
     }
 
     public Warehouse() {
-        this.productList = new HashMap<>();
+        this.productMap = new HashMap<>();
     }
 
     @Override
     public void addToWarehouse(Product product, int quantity) {
-        if (this.productList.containsKey(product.getName())) {
-            Integer newQuantity = this.productList.get(product.getName()) + quantity;
-            this.productList.put(product.getName(), newQuantity);
+        if (this.productMap.containsKey(product.getName())) {
+            ProductQuantity productQuantity = this.productMap.get(product.getName());
+            Integer newQuantity =
+                    productQuantity.getQuantity() + quantity;
+            productQuantity.setQuantity(newQuantity);
+            this.productMap.put(product.getName(), productQuantity);
         }
         else {
-            this.productList.put(product.getName(), quantity);
+            ProductQuantity productQuantity = new ProductQuantity(product, quantity);
+            this.productMap.put(product.getName(), productQuantity);
         }
     }
 
     @Override
-    public OrderElement getFromWarehouse(String productName, int quantity) {
-        if (this.productList.containsKey(productName)) {
-            Integer warehouseQuantity = this.productList.get(productName);
+    public ProductQuantity getFromWarehouse(String productName, int quantity) {
+        if (this.productMap.containsKey(productName)) {
+            ProductQuantity productQuantity = this.productMap.get(productName);
             Integer numberOfElementsTakenFromWarehouse =
-                    Math.min(warehouseQuantity, quantity);
-            OrderElement orderElement = new OrderElement(
-                    new Product(productName,2.0),
+                    Math.min(productQuantity.getQuantity(), quantity);
+            ProductQuantity orderElement = new ProductQuantity(
+                    productQuantity.getProduct(),
                     numberOfElementsTakenFromWarehouse);
-            Integer newQuantity = warehouseQuantity -
+            Integer newQuantity =
+                    productQuantity.getQuantity() -
                     numberOfElementsTakenFromWarehouse;
-            this.productList.put(productName, newQuantity);
+            productQuantity.setQuantity(newQuantity);
+            this.productMap.put(productName, productQuantity);
             return orderElement;
         }
         else {
-            return new OrderElement(
+            return new ProductQuantity(
                     new Product(productName, 2.0),
                     0);
         }

@@ -1,10 +1,10 @@
 package shop;
 
-public class OrderElement {
+public class ProductQuantity {
     private Product product;
     private Integer quantity;
 
-    public OrderElement(Product product, Integer quantity) {
+    public ProductQuantity(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }

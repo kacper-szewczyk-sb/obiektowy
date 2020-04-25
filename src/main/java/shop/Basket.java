@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    private List<OrderElement> orderElementList;
+    private List<ProductQuantity> orderElementList;
     private IWarehouse warehouse;
 
     public Basket() {
@@ -16,14 +16,14 @@ public class Basket {
     }
 
     public void basketSummary() {
-        for (OrderElement orderElement: orderElementList) {
+        for (ProductQuantity orderElement: orderElementList) {
             System.out.println(orderElement.toString());
         }
     }
 
     public void finalizeBasket() {
         Double totalSum = 0.0;
-        for (OrderElement orderElement: orderElementList) {
+        for (ProductQuantity orderElement: orderElementList) {
             totalSum += orderElement.getProduct().getPrice() * orderElement.getQuantity();
         }
 
@@ -31,7 +31,7 @@ public class Basket {
     }
 
     public void addToBasket(String productName, int quantity) {
-        OrderElement orderElement =
+        ProductQuantity orderElement =
                 this.warehouse.getFromWarehouse(productName, quantity);
         if (orderElement.getQuantity() == 0) {
             System.out.println("Brak produktu na magazynie");
