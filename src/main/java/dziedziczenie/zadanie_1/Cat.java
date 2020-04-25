@@ -4,7 +4,6 @@ import dziedziczenie.zadanie_1.races.CatRace;
 
 public class Cat extends Animal {
     private CatRace race;
-    private String color;
     public CatRace getRace() {
         return race;
     }
@@ -22,7 +21,6 @@ public class Cat extends Animal {
     public String toString() {
         return
                 super.toString() +
-                "race=" + race +
-                "color=" + color;
+                "race=" + race;
     }
 }
