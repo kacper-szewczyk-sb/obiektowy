@@ -19,17 +19,19 @@ public class AnimalPlayground {
 
     private static void showAnimalList() {
         List<Animal> animalList = new ArrayList<>();
+        animalList.add(new Animal("Zwierz",5));
         animalList.add(new Cat("Tytus", 1, CatRace.DACHOWIEC));
-        animalList.add(new Dog("Azor", 5, DogRace.CHART));
+        animalList.add(new Dog("Azor", 5, DogRace.CHART, "karmazynowa"));
 
         for (Animal animal: animalList) {
             System.out.println(animal.toString());
+            animal.voice();
         }
     }
 
     private static void showCatAndDog() {
         Cat cat = new Cat("Tytus", 1, CatRace.DACHOWIEC);
-        Dog dog = new Dog("Azor", 5, DogRace.CHART);
+        Dog dog = new Dog("Azor", 5, DogRace.CHART, "karmazynowa");
         System.out.println(cat.toString());
         System.out.println(dog.toString());
     }

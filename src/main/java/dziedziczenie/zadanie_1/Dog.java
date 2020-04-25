@@ -36,4 +36,9 @@ public class Dog extends Animal {
                 "race=" + race +
                 "color=" + color;
     }
+
+    @Override
+    public void voice() {
+        System.out.println("Hau hau");
+    }
 }

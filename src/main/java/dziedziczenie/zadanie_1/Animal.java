@@ -31,4 +31,8 @@ public class Animal {
                 "name='" + name + '\'' +
                 ", age=" + age;
     }
+
+    public void voice() {
+        System.out.println("......");
+    }
 }

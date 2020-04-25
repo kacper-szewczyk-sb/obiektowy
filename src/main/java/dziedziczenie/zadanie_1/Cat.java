@@ -23,4 +23,9 @@ public class Cat extends Animal {
                 super.toString() +
                 "race=" + race;
     }
+
+    @Override
+    public void voice() {
+        System.out.println("Miau");
+    }
 }
