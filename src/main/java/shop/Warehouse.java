@@ -45,6 +45,10 @@ public class Warehouse implements IWarehouse {
             this.productList.put(productName, newQuantity);
             return orderElement;
         }
-        return null;
+        else {
+            return new OrderElement(
+                    new Product(productName, 2.0),
+                    0);
+        }
     }
 }
