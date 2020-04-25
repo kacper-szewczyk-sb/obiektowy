@@ -27,9 +27,7 @@ public class OrderElement {
 
     @Override
     public String toString() {
-        return "OrderElement{" +
-                "product=" + product +
-                ", quantity=" + quantity +
-                '}';
+        return "product=" + product +
+                ", quantity=" + quantity ;
     }
 }

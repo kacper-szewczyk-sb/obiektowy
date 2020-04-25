@@ -17,7 +17,7 @@ public class Basket {
 
     public void basketSummary() {
         for (OrderElement orderElement: orderElementList) {
-            orderElement.toString();
+            System.out.println(orderElement.toString());
         }
     }
 
