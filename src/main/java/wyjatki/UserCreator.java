@@ -16,7 +16,7 @@ public class UserCreator {
             System.out.println(user.toString());
         }
         catch (IllegalArgumentException e) {
-            System.out.println(e.getStackTrace().toString());
+            e.printStackTrace();
         }
         finally {
             System.out.println("Koniec programu");
