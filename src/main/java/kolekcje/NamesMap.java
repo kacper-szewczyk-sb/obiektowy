@@ -10,8 +10,12 @@ public class NamesMap {
         populateMap(namesMap);
         printAllNames(namesMap);
 
+        getNamesStartingAt(namesMap, "a");
+    }
+
+    private static void getNamesStartingAt(Map<Long, String> namesMap, String startingPhrase) {
         for (String name : namesMap.values()) {
-            if (name.toLowerCase().startsWith("a")) {
+            if (name.toLowerCase().startsWith(startingPhrase)) {
                 System.out.print(name + " ");
             }
         }
