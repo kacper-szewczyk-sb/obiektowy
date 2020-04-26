@@ -7,7 +7,7 @@ public class UserTest {
 
     @Test
     public void shouldThrownIllegalArgumentExceptionOnWrongParameters() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(MissingParameterException.class, () -> {
             User.create(null,null,null,null);
         });
     }

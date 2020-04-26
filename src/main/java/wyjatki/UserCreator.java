@@ -22,6 +22,9 @@ public class UserCreator {
 
             System.out.println(user.toString());
         }
+        catch (MissingParameterException e) {
+            e.printStackTrace();
+        }
         catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

@@ -18,7 +18,7 @@ public class User {
     }
 
     public static User create(String login, String password,
-                              String firstname, String email) {
+                              String firstname, String email) throws MissingParameterException {
         checkForMissingArguments(login, password,
                 firstname, email);
         checkForShort(login, 6, "Za krótki login");
@@ -39,7 +39,7 @@ public class User {
         }
     }
 
-    private static void checkForMissingArguments(String login, String password, String firstname, String email) {
+    private static void checkForMissingArguments(String login, String password, String firstname, String email) throws MissingParameterException {
         checkIfArgumentIsNotEmpty(
                 login, "Brakuje logina");
         checkIfArgumentIsNotEmpty(
@@ -50,9 +50,9 @@ public class User {
                 email, "Brakuje emaila");
     }
 
-    private static void checkIfArgumentIsNotEmpty(String argument, String message) {
+    private static void checkIfArgumentIsNotEmpty(String argument, String message) throws MissingParameterException {
         if (argument == null || "".equals(argument)) {
-            throw new IllegalArgumentException(message);
+            throw new MissingParameterException(message);
         }
     }
 
