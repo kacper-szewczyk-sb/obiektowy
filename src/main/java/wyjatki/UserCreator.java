@@ -9,9 +9,16 @@ public class UserCreator {
         String login = scanner.next();
         System.out.print("Podaj hasło: ");
         String password = scanner.next();
+        System.out.print("Podaj imię: ");
+        String firstname = scanner.next();
+        System.out.print("Podaj email: ");
+        String email = scanner.next();
         try {
-            User user = User.create(login,
-                    password, "2", "2@w.p");
+            User user = User.create(
+                    login,
+                    password,
+                    firstname,
+                    email);
 
             System.out.println(user.toString());
         }

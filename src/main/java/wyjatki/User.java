@@ -21,13 +21,21 @@ public class User {
                               String firstname, String email) {
         checkForMissingArguments(login, password,
                 firstname, email);
-        checkForShortLogin(login);
+        checkForShort(login, 6, "Za krótki login");
+        checkForShort(password, 8, "Za krótkie hasło");
+        checkForDigits(password, "Hasło musi zawierać cyfry");
+
         return new User(login, password, firstname, email);
     }
 
-    private static void checkForShortLogin(String login) {
-        if (login.length() < 6) {
-            throw new IllegalArgumentException("Za krótki login");
+    private static void checkForShort(String argument, int len, String message) {
+        if (argument.length() < len) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+    private static void checkForDigits(String argument, String message) {
+        if (!argument.matches(".*\\d.*")) {
+            throw new IllegalArgumentException(message);
         }
     }
 
