@@ -16,10 +16,11 @@ public class Clinic {
     public void registerPatient(String name) {
         this.patientQueue.add(name);
         System.out.println("Zapisano " + name);
+
     }
 
     public String handlePatient() {
-        String patient = this.patientQueue.remove();
+        String patient = this.patientQueue.poll();
         this.doctor.addVisit(patient);
         return patient;
     }
