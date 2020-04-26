@@ -1,9 +1,6 @@
 package kolekcje;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ListDuplicates {
 
@@ -25,7 +22,7 @@ public class ListDuplicates {
     }
 
     public static List<String> removeDuplicates(List<String> wordList) {
-        Set<String> wordSet = new HashSet<>(wordList);
+        Set<String> wordSet = new LinkedHashSet<>(wordList);
         List<String> withoutDuplicates = new ArrayList<>();
         for (String word: wordSet) {
             withoutDuplicates.add(word);
