@@ -7,7 +7,7 @@ public class IntegerList {
     public static void main(String[] args) {
         LinkedList<Integer> integerLinkedList = new LinkedList<>();
         populateList(integerLinkedList);
-        
+
         System.out.println("Przed usunięciem");
         showList(integerLinkedList);
         removeOdd(integerLinkedList);
