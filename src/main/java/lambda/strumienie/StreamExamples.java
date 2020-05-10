@@ -25,5 +25,6 @@ public class StreamExamples {
         }).forEach((name) -> {
             System.out.println(name);
         });
+
     }
 }
