@@ -12,9 +12,39 @@ public class Company {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         List<CompanyWorker> companyWorkerList = new ArrayList<>();
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
+        ExecutorService executorService = startTimeThread();
 
+        addWorkerToWork(companyWorkerList);
+
+        executorService.shutdown();
+
+    }
+
+    private static void addWorkerToWork(List<CompanyWorker> companyWorkerList) throws InterruptedException, ExecutionException {
+        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
+        addNewWorker(companyWorkerList, executorService2, "Jan", 100);
+        addNewWorker(companyWorkerList, executorService2, "Paweł", 300);
+        addNewWorker(companyWorkerList, executorService2, "Anna", 500);
+        addNewWorker(companyWorkerList, executorService2, "Karol", 500);
+        executorService2.shutdown();
+    }
+
+    private static void addNewWorker(List<CompanyWorker> companyWorkerList,
+                                     ExecutorService executorService2,
+                                     String name, long delay)
+            throws InterruptedException, ExecutionException {
+        Future<CompanyWorker> companyWorkerFuture;
+        companyWorkerFuture =
+                executorService2.submit(() -> {
+                    Thread.sleep(delay);
+                    return new CompanyWorker(name, time);
+                });
+        companyWorkerList.add(companyWorkerFuture.get());
+        new Thread(companyWorkerList.get(companyWorkerList.size() - 1)).start();
+    }
+
+    private static ExecutorService startTimeThread() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.submit(() -> {
             try {
                 while (true) {
@@ -25,18 +55,6 @@ public class Company {
                 e.printStackTrace();
             }
         });
-        Future<CompanyWorker> companyWorkerFuture =
-            executorService2.submit(() -> {
-               Thread.sleep(500);
-               return new CompanyWorker("Jan", time);
-            });
-        companyWorkerList.add(companyWorkerFuture.get());
-
-        for (CompanyWorker companyWorker: companyWorkerList) {
-            System.out.println(companyWorker.toString());
-        }
-
-        executorService.shutdown();
-        executorService2.shutdown();
+        return executorService;
     }
 }
