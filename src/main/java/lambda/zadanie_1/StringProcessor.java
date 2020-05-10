@@ -2,6 +2,7 @@ package lambda.zadanie_1;
 
 public class StringProcessor {
     private static StringOperation stringOperation;
+    private static StringTwoParamsOperation stringTwoParamsOperation;
 
     public static void setStringOperation(
             StringOperation stringOperation) {
@@ -12,10 +13,27 @@ public class StringProcessor {
         return stringOperation.operation(input);
     }
 
+    private static String process(String input, int value) {
+        return stringTwoParamsOperation.operation(input, value);
+    }
+
     public static void main(String[] args) {
         changeToUpperCaseAndTest();
         useSetterAndTest();
         getThreeFirstLettersAndTest();
+        getNFirstLettersAndTest();
+    }
+
+    private static void getNFirstLettersAndTest() {
+        stringTwoParamsOperation = (str, value ) -> {
+            if (str.length() > value) {
+                return str.substring(0, value);
+            }
+            else {
+                return str;
+            }
+        };
+        testStrings2();
     }
 
     private static void getThreeFirstLettersAndTest() {
@@ -48,6 +66,13 @@ public class StringProcessor {
         System.out.println(process("abcdef"));
         System.out.println(process("CC"));
         System.out.println(process("LSasLLsdoaodia"));
+        System.out.println();
+    }
+
+    private static void testStrings2() {
+        System.out.println(process("abcdef",5));
+        System.out.println(process("CC",1));
+        System.out.println(process("LSasLLsdoaodia",4));
         System.out.println();
     }
 }
