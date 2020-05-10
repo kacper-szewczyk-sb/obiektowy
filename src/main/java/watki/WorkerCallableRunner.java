@@ -21,8 +21,12 @@ public class WorkerCallableRunner {
         }
 
         String result = future.get();
-        System.out.println(result);
+        System.out.println("Result1 " + result);
+        System.out.println();
 
+        future = executorService.submit(new WorkerCallable("Jan", 500));
+        result = future.get();
+        System.out.println("Result2 " + result);
         executorService.shutdown();
 
     }
