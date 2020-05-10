@@ -15,9 +15,33 @@ public class Company {
         ExecutorService executorService = startTimeThread();
 
         addWorkerToWork(companyWorkerList);
+        goHomeRunner(companyWorkerList);
 
-        executorService.shutdown();
+        executorService.shutdownNow();
 
+    }
+
+    private static void goHomeRunner(List<CompanyWorker> companyWorkerList)
+            throws ExecutionException, InterruptedException {
+        ExecutorService goHomeExecutorService = Executors.newSingleThreadExecutor();
+
+        Future<String> endOfWork = goHomeExecutorService.submit(() -> {
+            try {
+                do {
+                    Thread.sleep(3000);
+                    companyWorkerList.get(0).goHome();
+                    companyWorkerList.remove(0);
+                    for (CompanyWorker companyWorker : companyWorkerList) {
+                        companyWorker.reduceDelayTime();
+                    }
+                } while(!companyWorkerList.isEmpty());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "Koniec pracy";
+        });
+        System.out.println(endOfWork.get());
+        goHomeExecutorService.shutdown();
     }
 
     private static void addWorkerToWork(List<CompanyWorker> companyWorkerList) throws InterruptedException, ExecutionException {
